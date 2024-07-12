@@ -16,6 +16,8 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
 const bannerImg = document.querySelector('.banner-img');
@@ -24,49 +26,67 @@ const tagLineContainer = document.querySelector('#banner p');
 
 let currentSlideIndex = 0;
 
+
 arrowLeft.addEventListener('click', goToPreviousSlide)
 arrowRight.addEventListener('click', goToNextSlide)
 
 function goToNextSlide() {
 	currentSlideIndex++
 	showSlide(currentSlideIndex)
+	console.log(currentSlideIndex)
 }
 
 function goToPreviousSlide() {
 	currentSlideIndex--
 	showSlide(currentSlideIndex)
+	console.log(currentSlideIndex)
 }
 
-function showSlide(data) {
+function showSlide(currentSlideIndex) {
 	// si le currentIndex est plus petit que zéro, alors on revient au dernier element du tableau.
-	// si le currentIndex est plus grand que la longueur du tableau, on revient au premier element du tableau.
-	tagLineContainer.innerHTML = slides[data].tagLine;
-	bannerImg.src = `./assets/images/slideshow/${slides[data].image}` 
-	
+	if (currentSlideIndex < 0) {
+		currentSlideIndex = slides.length-1;
+	} else if (currentSlideIndex > slides.length-1) {
+		currentSlideIndex = 0;
+	}
+
+	tagLineContainer.innerHTML = slides[currentSlideIndex].tagLine;
+	bannerImg.src = `./assets/images/slideshow/${slides[currentSlideIndex].image}`
 }
 
 
-const BulletPoints = document.querySelector(".dot");
+// Supprimer les dots du HTML, en laissant que le parent. Les créer en javascript.
+// Créer un dots par éléments trouvé dans le tableau slides.
+
+//Exemple : Si currentSlideIndex = 2      -> alors j'ajoute la classe dot_selected au deuxieme dots
 
 
 
-function updateDot() {
-	const bulletPoints = document.querySelectorAll(".dot");	
-	 for (let i = 0; i < 4; i ++) {
-	 
-	  const dot = bulletPoints[i];
-	  if ([i] == currentSlideIndex){
-		  dot.bulletPoints.add('dot_selected');		
-	}
-	else{
-	  dot.bulletPoints.remove('dot_selected');	 
-	}
-	  
-	  }  
-  }
+let spanElement = document.createElement("span");
 
-//creation d'une boucle
 
-//le but est de créer une boucle avec les points et qui interagis avec les images en intégrant une condition 
-// si j'appuie sur un point il se remplit, si j'arrête d'appuyer dessus il se vide  
-// Déclarer l'evenement du BulletPoints vide, créer une fonction click avec ce bullet point
+
+spanElement.classList.add(".dot");
+
+let dots = document.querySelector("dots");
+
+dots.appendChild("spanElement")
+
+
+
+
+// Notions :
+// _ Comment mettre des éléments créer en javascript dans un tableau.
+// _ Comment ajouter la class d'un élément HTML avec Javascript.
+
+
+
+
+
+
+
+
+
+
+
+
