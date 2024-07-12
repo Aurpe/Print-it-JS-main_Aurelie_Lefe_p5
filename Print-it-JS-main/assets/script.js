@@ -60,17 +60,43 @@ function showSlide(currentSlideIndex) {
 
 //Exemple : Si currentSlideIndex = 2      -> alors j'ajoute la classe dot_selected au deuxieme dots
 
+function addDot (){
+	const dots = document.querySelector(".dots");
+	for (let i = 0; i
+		
+		 < slides.length; index++) {
+
+		const dot= document.createElement("div");
+		dot.setAttribute("class", "dot");
+		dots.appendChild(dot);
+	}
+
+}
+
+function updateDot (){
+
+	const bulletPoints = document.querySelectorAll(".dot");
+
+   for (let i = 0; i < bulletPoints.length; currentSlideIndex++) {
+   
+    const dot = bulletPoints[currentSlideIndex];
+	if (currentSlideIndex == position){
+		dot.classList.add('dot_selected');		
+  }
+  else{
+    dot.classList.remove('dot_selected');	 
+  }
+    
+	}  
+}
 
 
-let spanElement = document.createElement("span");
 
+//let spanElement = document.createElement("span");
 
-
-spanElement.classList.add(".dot");
-
-let dots = document.querySelector("dots");
-
-dots.appendChild("spanElement")
+//const dots = document.querySelector(".dot");
+//spanElement.classList.add(".dot");
+//dots.appendChild(dots)
 
 
 
