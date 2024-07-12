@@ -60,27 +60,33 @@ function showSlide(currentSlideIndex) {
 
 //Exemple : Si currentSlideIndex = 2      -> alors j'ajoute la classe dot_selected au deuxieme dots
 
-function addDot (){
-	const dots = document.querySelector(".dots");
-	for (let i = 0; i
-		
-		 < slides.length; index++) {
 
-		const dot= document.createElement("div");
-		dot.setAttribute("class", "dot");
-		dots.appendChild(dot);
-	}
+let bulletPoints= 4
 
+//let HTML= div.innerHTML;
+//console.log(div.HTML)
+//div.html="dot";
+
+const div= document.querySelector(".dot")
+if (div) {
+	for (let i = 0; i < nombreDePoints; i++){
+
+		let spanElement= document.createElement("span");
+
+		spanElement.classList.add("dots");
+
+		div.appendChild(spanElement);
+	
+}
 }
 
 function updateDot (){
 
 	const bulletPoints = document.querySelectorAll(".dot");
-
    for (let i = 0; i < bulletPoints.length; currentSlideIndex++) {
    
     const dot = bulletPoints[currentSlideIndex];
-	if (currentSlideIndex == position){
+	if (i == currentSlideIndex){
 		dot.classList.add('dot_selected');		
   }
   else{
@@ -89,6 +95,20 @@ function updateDot (){
     
 	}  
 }
+
+function addDot (){
+	const dots = document.querySelector(".dots");
+	for (let i = 0; i< slides.length; i++) {
+
+		const dot= document.createElement("div");
+		dot.setAttribute("class", "dot");
+		dots.appendChild(dot);
+	}
+
+}
+
+
+//Si je clique sur dot alors dot selected se remplit
 
 
 
