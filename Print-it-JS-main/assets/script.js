@@ -34,14 +34,14 @@ let currentSlideIndex = 0;
 arrowLeft.addEventListener('click', goToPreviousSlide) //Creation d'un événement "Click"
 arrowRight.addEventListener('click', goToNextSlide)
 
-function goToNextSlide() { //Utilisation du nom de l'évenement pour la fonction
+function goToNextSlide() { //Fonction qui appelle la slide à defiler vers l'avant, ainsi que les dots
 	currentSlideIndex++
 	showSlide(currentSlideIndex)
 	updateDots()
 	console.log(currentSlideIndex)
 }
 
-function goToPreviousSlide() {
+function goToPreviousSlide() {//Fonction qui appelle la slide à defiler vers l'arrière, ainsi que les dots
 	currentSlideIndex--
 	showSlide(currentSlideIndex)
 	updateDots()
