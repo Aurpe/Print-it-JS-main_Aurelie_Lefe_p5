@@ -16,123 +16,77 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+//Tableau avec toutes les images et les taglines
 
+console.log(slides)
 
-const arrowLeft = document.querySelector(".arrow_left");
+const arrowLeft = document.querySelector(".arrow_left"); //Recupération de la flèche dans le fichier HTML
 const arrowRight = document.querySelector(".arrow_right");
 const bannerImg = document.querySelector('.banner-img');
 const tagLineContainer = document.querySelector('#banner p');
+const dotsContainer = document.querySelector('.dots')
 
 
 let currentSlideIndex = 0;
+//Position image
 
 
-arrowLeft.addEventListener('click', goToPreviousSlide)
+arrowLeft.addEventListener('click', goToPreviousSlide) //Creation d'un événement "Click"
 arrowRight.addEventListener('click', goToNextSlide)
 
-function goToNextSlide() {
+function goToNextSlide() { //Utilisation du nom de l'évenement pour la fonction
 	currentSlideIndex++
 	showSlide(currentSlideIndex)
+	updateDots()
 	console.log(currentSlideIndex)
 }
 
 function goToPreviousSlide() {
 	currentSlideIndex--
 	showSlide(currentSlideIndex)
+	updateDots()
 	console.log(currentSlideIndex)
 }
 
-function showSlide(currentSlideIndex) {
+function showSlide(index) {
 	// si le currentIndex est plus petit que zéro, alors on revient au dernier element du tableau.
-	if (currentSlideIndex < 0) {
-		currentSlideIndex = slides.length-1;
-	} else if (currentSlideIndex > slides.length-1) {
+	if (index < 0) {
+		currentSlideIndex = slides.length - 1;
+		console.log(currentSlideIndex)
+	} else if (index > slides.length - 1) {
 		currentSlideIndex = 0;
+		console.log(currentSlideIndex)
 	}
 
 	tagLineContainer.innerHTML = slides[currentSlideIndex].tagLine;
 	bannerImg.src = `./assets/images/slideshow/${slides[currentSlideIndex].image}`
 }
 
+showSlide()
 
 // Supprimer les dots du HTML, en laissant que le parent. Les créer en javascript.
 // Créer un dots par éléments trouvé dans le tableau slides.
 
 //Exemple : Si currentSlideIndex = 2      -> alors j'ajoute la classe dot_selected au deuxieme dots
+const dots = [];
 
 
-let bulletPoints= 4
+slides.forEach(function() { 
+	const dot = document.createElement('span'); // on crée un élémemnt <span>
+	dot.classList.add('dot'); // élément span ajouté à la class 'dot'
+	dotsContainer.appendChild(dot) // on lie l'element span <dot> afin qu'il devienne l'enfant de "dots"
+	dots.push(dot) // on fait donc un push afin que dot prenne sa place dans le DOM
+})
 
-//let HTML= div.innerHTML;
-//console.log(div.HTML)
-//div.html="dot";
-
-const div= document.querySelector(".dot")
-if (div) {
-	for (let i = 0; i < nombreDePoints; i++){
-
-		let spanElement= document.createElement("span");
-
-		spanElement.classList.add("dots");
-
-		div.appendChild(spanElement);
-	
-}
+function updateDots() {
+	dots.forEach(function(dot) {
+		dot.classList.remove('dot_selected')
+	})
+	dots[currentSlideIndex].classList.add('dot_selected')
+	console.log(dots)
 }
 
-function updateDot (){
-
-	const bulletPoints = document.querySelectorAll(".dot");
-   for (let i = 0; i < bulletPoints.length; currentSlideIndex++) {
-   
-    const dot = bulletPoints[currentSlideIndex];
-	if (i == currentSlideIndex){
-		dot.classList.add('dot_selected');		
-  }
-  else{
-    dot.classList.remove('dot_selected');	 
-  }
-    
-	}  
-}
-
-function addDot (){
-	const dots = document.querySelector(".dots");
-	for (let i = 0; i< slides.length; i++) {
-
-		const dot= document.createElement("div");
-		dot.setAttribute("class", "dot");
-		dots.appendChild(dot);
-	}
-
-}
-
-
-//Si je clique sur dot alors dot selected se remplit
-
-
-
-//let spanElement = document.createElement("span");
-
-//const dots = document.querySelector(".dot");
-//spanElement.classList.add(".dot");
-//dots.appendChild(dots)
-
-
-
-
-// Notions :
-// _ Comment mettre des éléments créer en javascript dans un tableau.
-// _ Comment ajouter la class d'un élément HTML avec Javascript.
-
-
-
-
-
-
-
-
-
+updateDots()
 
 
 
